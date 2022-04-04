@@ -13,27 +13,13 @@ $(document).ready(function() {
     }
   });
 
-  // let userAgent = navigator.userAgent.toLowerCase(); 
-  // if (userAgent.indexOf('safari')!=-1) { 
-  //   if(userAgent.indexOf('chrome')  > -1) {
-  //     //browser is chrome
-  //     $(".form-review__select").css("text-align", "-webkit-center");
-  //   } else if((userAgent.indexOf('opera') > -1)||(userAgent.indexOf('opr')  > -1)){
-  //     //browser is opera 
-  //     $(".form-review__select").css("text-align", "-moz-center;");
-  //   } else {
-  //   //browser is safari, add css
-  //     $(".form-review__select").css("text-indent", "6px");
-  //   }
-  // }
-
   if ($.browser.webkit) {
     $(".form-review__select").css("text-align", "-webkit-center");
   } else if ($.browser.msie) {
     $(".form-review__select").css("text-align", "center");
   } else if ($.browser.mozilla) {
     $(".form-review__select").css("text-align", "-moz-center");
-  } else {
+  } else if ($.browser.iphone) {
     $(".form-review__select").css("text-indent", "6px");
   }
 
