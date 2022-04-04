@@ -13,14 +13,14 @@ $(document).ready(function() {
     }
   });
 
-  function fix_align(that){
-    var text=$(that).find('option').filter(':selected').text();
-    $('.fixSelect').text(text);
-    var indent=($(that).width()-$('.fixSelect').width())/2;
-    $(that).css({textIndent:indent+'px'});
-}
-$('.form-review__select').change(function(){fix_align(this)});
-$('.form-review__select').each(function(){fix_align(this)});
+//   function fix_align(that){
+//     var text=$(that).find('option').filter(':selected').text();
+//     $('.fixSelect').text(text);
+//     var indent=($(that).width()-$('.fixSelect').width())/2;
+//     $(that).css({textIndent:indent+'px'});
+// }
+// $('.form-review__select').change(function(){fix_align(this)});
+// $('.form-review__select').each(function(){fix_align(this)});
 
   (function(){
     citySearch.on("keyup", function() {
