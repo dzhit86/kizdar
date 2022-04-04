@@ -104,65 +104,28 @@ $(document).ready(function() {
     }
   });
 
-  $(".profile-card__bookmark .btn").on("click", addFavorite);
+  $(".profile-card__bookmark .btn").on("click", bookmark);
 
-  function addFavorite(a) {
+  function bookmark(a) {
     a.preventDefault();
-    var title = document.title;
-    var url = document.location;
-    try {
-    // браузер Internet Explorer
-    window.external.AddFavorite(url, title);
-    }
-    catch (e) {
-    try {
-    // браузер Mozilla
-    window.sidebar.addPanel(title, url, "");
-    }
-    catch (e) {
-    // браузер Opera
-    if (typeof(opera)=="object" || window.sidebar) {
-    a.rel="sidebar";
-    a.title=title;
-    a.url=url;
-    a.href=url;
-    return true;
-    }
-    else {
-    // Unknown
-    alert('Кликните Ctrl-D чтобы добавить страницу в закладки');
-    }
-    }
-    }
-    return false;
-    }function addFavorite(a) {
-  var title = document.title;
-  var url = document.location;
-  try {
-  // браузер Internet Explorer
-  window.external.AddFavorite(url, title);
-  }
-  catch (e) {
-  try {
-  // браузер Mozilla
-  window.sidebar.addPanel(title, url, "");
-  }
-  catch (e) {
-  // браузер Opera
-  if (typeof(opera)=="object" || window.sidebar) {
-  a.rel="sidebar";
-  a.title=title;
-  a.url=url;
-  a.href=url;
-  return true;
-  }
-  else {
-  // Unknown
-  alert('Кликните Ctrl-D чтобы добавить страницу в закладки');
-  }
-  }
-  }
-  return false;
+    title=document.title;
+    url=document.location;
+      try { 
+       window.sidebar.addPanel(title, url, "");
+      } catch (e) {
+        if (window.opera && window.print || typeof(window.sidebar)=="object") {  // Opera || Mozilla
+          a.rel="sidebar";
+          a.title=title;
+          a.url=url;
+          a.href=url;
+          return true;
+        } else if(document.all) {  //  Internet Explorer
+            window.external.AddFavorite(url, title);
+            return true;
+        }  else {
+           alert('Нажмите Ctrl+D (Cmd+D на MacOS), чтобы добавить страницу в Избранное');
+        }
+     }
   }
 });
 
