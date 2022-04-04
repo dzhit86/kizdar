@@ -13,14 +13,29 @@ $(document).ready(function() {
     }
   });
 
-//   function fix_align(that){
-//     var text=$(that).find('option').filter(':selected').text();
-//     $('.fixSelect').text(text);
-//     var indent=($(that).width()-$('.fixSelect').width())/2;
-//     $(that).css({textIndent:indent+'px'});
-// }
-// $('.form-review__select').change(function(){fix_align(this)});
-// $('.form-review__select').each(function(){fix_align(this)});
+  // let userAgent = navigator.userAgent.toLowerCase(); 
+  // if (userAgent.indexOf('safari')!=-1) { 
+  //   if(userAgent.indexOf('chrome')  > -1) {
+  //     //browser is chrome
+  //     $(".form-review__select").css("text-align", "-webkit-center");
+  //   } else if((userAgent.indexOf('opera') > -1)||(userAgent.indexOf('opr')  > -1)){
+  //     //browser is opera 
+  //     $(".form-review__select").css("text-align", "-moz-center;");
+  //   } else {
+  //   //browser is safari, add css
+  //     $(".form-review__select").css("text-indent", "6px");
+  //   }
+  // }
+
+  if ($.browser.webkit) {
+    $(".form-review__select").css("text-align", "-webkit-center");
+  } else if ($.browser.msie) {
+    $(".form-review__select").css("text-align", "center");
+  } else if ($.browser.mozilla) {
+    $(".form-review__select").css("text-align", "-moz-center");
+  } else {
+    $(".form-review__select").css("text-indent", "6px");
+  }
 
   (function(){
     citySearch.on("keyup", function() {
