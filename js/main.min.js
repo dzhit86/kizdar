@@ -103,28 +103,69 @@ $(document).ready(function() {
         cityList.find("a").show();
     }
   });
+
+  $(".profile-card__bookmark .btn").on("click", addFavorite);
+
+  function addFavorite(a) {
+    a.preventDefault();
+    var title = document.title;
+    var url = document.location;
+    try {
+    // браузер Internet Explorer
+    window.external.AddFavorite(url, title);
+    }
+    catch (e) {
+    try {
+    // браузер Mozilla
+    window.sidebar.addPanel(title, url, "");
+    }
+    catch (e) {
+    // браузер Opera
+    if (typeof(opera)=="object" || window.sidebar) {
+    a.rel="sidebar";
+    a.title=title;
+    a.url=url;
+    a.href=url;
+    return true;
+    }
+    else {
+    // Unknown
+    alert('Кликните Ctrl-D чтобы добавить страницу в закладки');
+    }
+    }
+    }
+    return false;
+    }function addFavorite(a) {
+  var title = document.title;
+  var url = document.location;
+  try {
+  // браузер Internet Explorer
+  window.external.AddFavorite(url, title);
+  }
+  catch (e) {
+  try {
+  // браузер Mozilla
+  window.sidebar.addPanel(title, url, "");
+  }
+  catch (e) {
+  // браузер Opera
+  if (typeof(opera)=="object" || window.sidebar) {
+  a.rel="sidebar";
+  a.title=title;
+  a.url=url;
+  a.href=url;
+  return true;
+  }
+  else {
+  // Unknown
+  alert('Кликните Ctrl-D чтобы добавить страницу в закладки');
+  }
+  }
+  }
+  return false;
+  }
 });
 
-
-//swiper js
-// const swiper = new Swiper('.swiper', {
-//   // Optional parameters
-//   direction: 'horizontal',
-//   loop: true,
-//   slidesPerView: 1,
-//   lazy: true,
-//   // If we need pagination
-//   pagination: {
-//     el: '.swiper-pagination',
-//   },
-
-//   // Navigation arrows
-//   navigation: {
-//     nextEl: '.swiper-button-next',
-//     prevEl: '.swiper-button-prev',
-//   },
-
-// });
 
 
 //photoswipe js
